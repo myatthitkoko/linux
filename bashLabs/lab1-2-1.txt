@@ -1,0 +1,124 @@
+Script started on Thu 16 Jan 2025 09:44:00 PM PST
+[myatthitkoko@voyager ~]$ echo My set up above is a soft link that is always accessible in my home directory.
+My set up above is a soft link that is always accessible in my home directory.
+[myatthitkoko@voyager ~]$ cp Source18b/lab1-02in .
+[myatthitkoko@voyager ~]$ mkdir lab1-2dir
+[myatthitkoko@voyager ~]$ touch lab1-2dir/f1
+[myatthitkoko@voyager ~]$ (echo whoami; echo $0) > lab1-2dir/f2
+[myatthitkoko@voyager ~]$ ls -l lab1-2in lab1-2dir/f*
+-rw-r--r--. 1 myatthitkoko unixStudent   0 Jan 16 21:45 lab1-2dir/f1
+-rw-r--r--. 1 myatthitkoko unixStudent  12 Jan 16 21:46 lab1-2dir/f2
+-rw----r--. 1 myatthitkoko unixStudent 870 Jan 16 21:45 lab1-2in
+[myatthitkoko@voyager ~]$ echo Number of big cities:;wc -l lab1-2in | cut -d" " -f1
+Number of big cities:
+50
+[myatthitkoko@voyager ~]$ sort -n lab1-2in -t ';' -k2 | tail -1 | tr ';' ':' | cut -f1,2 -d':'
+albuquerque:6120
+[myatthitkoko@voyager ~]$ grep -e '-' lab1-2in | cut -f1 -d';'
+New Orleans
+Long	Beach
+[myatthitkoko@voyager ~]$ cat Lab1Step11 
+#ConvertNumbersToLetters
+#The following is written in Python programming language
+Numbers = [“one”, “two”, “three”, “four”]
+Num = 1
+print(“Enter 0 to stop.”)
+while Num != 0:
+  Num = int(input(“Enter between 0 and 4 inclusive. ”))
+  if Num >=1 and Num <=4:
+    print(Numbers[Num-1])
+  elif Num != 0:
+    print(“Your input was out of range.”)
+print(“Goodbye”)
+[myatthitkoko@voyager ~]$ exit
+exit
+
+Script done on Thu 16 Jan 2025 09:52:05 PM PST
+Script started on Tue 21 Jan 2025 01:01:04 PM PST
+[?[myatthitkoko@voyager ~]$ egrep -i '^san' lab1-2in 
+sAn Diego;823;0
+San antonio;1000;505
+SAN Francisco;934;0
+san jose;2125;0
+[myatthitkoko@voyager ~]$ egrep '\s' lab1-2in | cut -f1 -d';'
+New york
+los 	angeles
+sAn Diego
+San antonio
+SAN Francisco
+Washington D.C.
+san jose
+New Orleans
+St.	Louis
+Kansas City
+el Paso
+oklahoma city
+Fort Worth
+Long	Beach
+[myatthitkoko@voyager ~]$ cut -f3 -d';' lab1-2in | egrep -v '[0-9]{3}$' | wc -l
+25
+[myatthitkoko@voyager ~]$ cut -f3 -d';' lab1-2in | egrep -n '^0$'
+[32m1[36m:0
+[32m3[36m:0
+[32m4[36m:0
+[32m5[36m:0
+[32m8[36m:0
+[32m10[36m:0
+[32m13[36m:0
+[32m17[36m:0
+[32m20[36m:0
+[32m22[36m:0
+[32m23[36m:0
+[32m35[36m:0
+[32m36[36m:0
+[32m41[36m:0
+[32m43[36m:0
+[32m46[36m:0
+[myatthitkoko@voyager ~]$ find -type f | xargs egrep -l ','
+./.bash_history
+./module1exercise
+./extra_module1exercise
+./WorkInProcess
+./module2exercise
+./Lab1Step11
+./lab1.txt
+./lab1.txt.cleaned
+./fileA
+./lab1-2.txt
+[myatthitkoko@voyager ~]$ find -maxdepth 1 -type f | xargs ls -l
+-rw-------. 1 myatthitkoko unixStudent 8820 Jan 21 23:54 ./.bash_history
+-rw-r--r--. 1 myatthitkoko unixStudent   18 Nov 24  2021 ./.bash_logout
+-rw-r--r--. 1 myatthitkoko unixStudent  193 Nov 24  2021 ./.bash_profile
+-rw-r--r--. 1 myatthitkoko unixStudent  231 Nov 24  2021 ./.bashrc
+-rw----r--. 1 myatthitkoko unixStudent  388 Jan  9 18:59 ./clean.sed
+-rwx------. 1 myatthitkoko unixStudent  488 Jan  9 18:59 ./clean.sh
+-rw----r--. 1 myatthitkoko unixStudent 4092 Jan  9 19:00 ./extra_module1exercise
+-rw-r--r--. 1 myatthitkoko unixStudent   59 Jan 21 23:37 ./fileA
+-rw-r--r--. 1 myatthitkoko unixStudent    0 Jan 22 00:54 ./fileD
+-rw-r--r--. 1 myatthitkoko unixStudent    0 Jan 22 00:55 ./fileG
+-rw-r--r--. 1 myatthitkoko unixStudent  214 Jan 21 23:20 ./FindNotes
+-rw-r--r--. 1 myatthitkoko unixStudent  205 Jan 14 18:30 ./GrepNotes
+-rw-r--r--. 1 myatthitkoko unixStudent  172 Aug 10  2022 ./.kshrc
+-rw----r--. 1 myatthitkoko unixStudent  870 Jan 16 21:45 ./lab1-2in
+-rw-r--r--. 1 myatthitkoko unixStudent 1554 Jan 21 23:57 ./lab1-2.txt
+-rw-r--r--. 1 myatthitkoko unixStudent  390 Jan 16 21:28 ./Lab1Step11
+-rw-r--r--. 1 myatthitkoko unixStudent 1837 Jan 16 21:52 ./lab1.txt
+-rw-r--r--. 1 myatthitkoko unixStudent 1554 Jan 16 21:57 ./lab1.txt.cleaned
+-rw-r--r--. 1 myatthitkoko unixStudent    0 Jan 22 01:01 ./lab2.txt
+-rw-------. 1 myatthitkoko unixStudent   35 Jan 10 12:08 ./.lesshst
+-rw-r--r--. 1 myatthitkoko unixStudent  105 Jan 16 21:36 ./m1
+-rwx------. 1 myatthitkoko unixStudent 1904 Jan  9 18:55 ./module1exercise
+-rwx------. 1 myatthitkoko unixStudent   62 Jan  9 18:50 ./module1input
+-rw----r--. 1 myatthitkoko unixStudent 1804 Jan 14 19:08 ./module2exercise
+-rw-------. 1 myatthitkoko unixStudent 3966 Jan 21 23:37 ./.viminfo
+-rw-r--r--. 1 myatthitkoko unixStudent 7454 Jan 11 14:40 ./WorkInProcess
+[myatthitkoko@voyager ~]$ find -name 'f[0-9]' | xargs chmod 600
+[myatthitkoko@voyager ~]$ find -type f -empty -exec rm -i {} \;
+rm: remove regular empty file ‘./fileD’? n
+rm: remove regular empty file ‘./fileG’? n
+rm: remove regular empty file ‘./f23’? n
+rm: remove regular empty file ‘./f8’? n
+[myatthitkoko@voyager ~]$ exit
+exit
+
+Script done on Tue 21 Jan 2025 01:16:03 PM PST

@@ -1,0 +1,165 @@
+Script started on Wed 12 Feb 2025 10:01:29 PM PST
+[?[myatthitkoko@voyager ~]$ cp labSource18b/lab3in .
+[myatthitkoko@voyager ~]$ sed -n '3,4 p' lab3in
+Africa;11,730,000;87.15
+Asia;16,920,000;246.11
+[myatthitkoko@voyager ~]$ sed -n '/America/p' lab3in
+North America;9,460,000;57.29
+South America;6,890,000;56.90
+[myatthitkoko@voyager ~]$ sed -n '=' lab3in | sed -n '$! d; p'
+9
+[myatthitkoko@voyager ~]$ sed '/^$/d' lab3in
+Continent;Area(sq. mi);Density(People per sq. mi)
+Africa;11,730,000;87.15
+Asia;16,920,000;246.11
+Australia;3,478,200;8.37
+Europe;3,930,000;187.84
+North America;9,460,000;57.29
+South America;6,890,000;56.90
+=======================
+[myatthitkoko@voyager ~]$ sed -n '/[0-9]/ s/^/   /p' lab3in
+   Africa;11,730,000;87.15
+   Asia;16,920,000;246.11
+   Australia;3,478,200;8.37
+   Europe;3,930,000;187.84
+   North America;9,460,000;57.29
+   South America;6,890,000;56.90
+[myatthitkoko@voyager ~]$ sed -nr '/[0-9]/ s/(.*);.*$/\1/p' lab3in | sed 'y/;/:/'
+Africa:11,730,000
+Asia:16,920,000
+Australia:3,478,200
+Europe:3,930,000
+North America:9,460,000
+South America:6,890,000
+[myatthitkoko@voyager ~]$ cat lab3step7.sed 
+#sed script for lab 3
+
+
+1a +++++++++++++++++++++++
+2d
+
+/[0-9]/ a ***
+/[0-9]/ s/,//gp
+
+/=/ {y/=/+/
+     p }
+[myatthitkoko@voyager ~]$ sed -nf lab3step7.sed lab3in
++++++++++++++++++++++++
+Africa;11730000;87.15
+***
+Asia;16920000;246.11
+***
+Australia;3478200;8.37
+***
+Europe;3930000;187.84
+***
+North America;9460000;57.29
+***
+South America;6890000;56.90
+***
++++++++++++++++++++++++
+[myatthitkoko@voyager ~]$ exit
+exit
+
+Script done on Wed 12 Feb 2025 10:13:32 PM PST
+Script started on Thu 13 Feb 2025 10:03:08 AM PST
+[?[myatthitkoko@voyager ~]$ awk NR == 3 || NR == 4 {print}' lab3in
+Africa;11,730,000;87.15
+Asia;16,920,000;246.11
+[myatthitkoko@voyager ~]$ awk '/America/ {print}' lab3in
+North America;9,460,000;57.29
+South America;6,890,000;56.90
+[myatthitkoko@voyager ~]$ awk 'END {print NR}' lab3in
+9
+[myatthitkoko@voyager ~]$ awk '!/^$/ {print}' lab3in
+Continent;Area(sq. mi);Density(People per sq. mi)
+Africa;11,730,000;87.15
+Asia;16,920,000;246.11
+Australia;3,478,200;8.37
+Europe;3,930,000;187.84
+North America;9,460,000;57.29
+South America;6,890,000;56.90
+=======================
+[myatthitkoko@voyager ~]$ awk '/[0-9]/ {print "   " $0}' lab3in
+   Africa;11,730,000;87.15
+   Asia;16,920,000;246.11
+   Australia;3,478,200;8.37
+   Europe;3,930,000;187.84
+   North America;9,460,000;57.29
+   South America;6,890,000;56.90
+[myatthitkoko@voyager ~]$ awk -F";" '/[0-9]/ {print $1":"$2}' lab3in
+Africa:11,730,000
+Asia:16,920,000
+Australia:3,478,200
+Europe:3,930,000
+North America:9,460,000
+South America:6,890,000
+[myatthitkoko@voyager ~]$ echo step 1 to step 4 are shorter with sed and step 5 and step 6 are shorter with awk. However awk feels eaiser to work with.
+step 1 to step 4 are shorter with sed and step 5 and step 6 are shorter with awk. However awk feels eaiser to work with.
+
+[myatthitkoko@voyager ~]$ cat lab4step8.awk
+#awk script to count students and staff in the system
+
+BEGIN {	FS = ":"
+	StudentCount = 0
+	StaffCount = 0}
+
+/student/ {StudentCount += 1}
+/staff/ {StaffCount += 1}
+
+END { print 	"The number of students:", StudentCount, 
+		"\nThe number of staff:", StaffCount}
+[myatthitkoko@voyager ~]$ awk -f 'lab4step8.awk' /etc/passwd
+The number of students: 287 
+The number of staff: 110
+[myatthitkoko@voyager ~]$ cat lab4step9.awk
+#awk script to find myself in the system
+
+BEGIN {	FS = ":"
+	FullName = ""
+	LineNum = 0}
+
+$1 ~ /myatthitkoko/ {FullName = $5 ; LineNum = NR }
+
+END {print "User", FullName ,"is on line", LineNum ,"out of", NR,"lines" } 
+[myatthitkoko@voyager ~]$ awk -f 'lab4step9.awk' /etc/passwd
+User "Myat Thit Ko Ko" _  is on line 334 out of 457 lines
+[myatthitkoko@voyager ~]$ cat lab4step10.awk
+#awk script to find population density
+
+BEGIN {	FS = ";"
+	name = ""
+	den = 0}
+
+NR ~ 3  {name = $1 ;den = $3}
+NR !~ 3 && $3 > den {name = $1 ; den = $3}
+
+END {print name,"has the hightest density of",den}
+[myatthitkoko@voyager ~]$ awk -f 'lab4step10.awk' lab3in
+Asia has the hightest density of 246.11
+[myatthitkoko@voyager ~]$ cat lab4step11.awk
+#awk script to detect repetition
+
+BEGIN {	FS = " "
+	Count = 0}
+
+{arr[$1]++}
+END {
+{
+	for (i in arr)
+ 	{	
+		if (arr[i] > 1) Count ++
+	}
+}
+
+if (Count == 0) {print "no user logging in more than once"}
+if (Count == 1) {print "1 user logging in more than once"}
+if (Count > 1) {print Count,"users logging in more than once"}
+
+}
+[myatthitkoko@voyager ~]$ who | awk -f 'lab4step11.awk'
+2 users logging in more than once
+[myatthitkoko@voyager ~]$ exit
+exit
+
+Script done on Thu 13 Feb 2025 10:15:32 AM PST

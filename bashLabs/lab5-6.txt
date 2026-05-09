@@ -1,0 +1,200 @@
+Script started on Thu 06 Mar 2025 10:56:20 AM PST
+[?[myatthitkoko@voyager lab5]$ make input.o
+g++ -c input.cpp
+[myatthitkoko@voyager lab5]$ ls
+concat.cpp  input.cpp  input.o   main.cpp  output.cpp
+concat.h    input.h    lab5.txt  makefile  output.h
+[myatthitkoko@voyager lab5]$ make
+g++ -c main.cpp
+g++ -c concat.cpp
+g++ -c output.cpp
+g++ -o greet main.o input.o concat.o output.o 
+[myatthitkoko@voyager lab5]$ sed -i "/return/ s/5/5\!/" concat.cpp
+[myatthitkoko@voyager lab5]$ make EXE=hi.exe
+g++ -c concat.cpp
+g++ -o hi.exe main.o input.o concat.o output.o 
+[myatthitkoko@voyager lab5]$ echo Only a macro value was changed. Makefile is al ready set up.
+Only a macro value was changed. Makefile is already set up.
+[myatthitkoko@voyager lab5]$ cat makefile
+# makefile for lab5 step1
+
+EXE = greet
+OBJ = main.o input.o concat.o output.o 
+CC = g++
+
+.PHONY : list
+
+$(EXE) : $(OBJ)
+	$(CC) -o $(EXE) $(OBJ)
+
+%.o : %.cpp
+	$(CC) -c $^
+
+cleanobject:
+	@rm *.o 2>>error.txt 
+
+cleanexe:
+	@rm *.exe 2>>error.txt
+
+clean : cleanobject cleanexe
+
+list :
+	@ls -l *.cpp
+
+filename :
+	@echo filename is built
+[myatthitkoko@voyager lab5]$ touch clean list
+[myatthitkoko@voyager lab5]$ make list
+-rw----r--. 1 myatthitkoko unixStudent 159 Mar  6 10:58 concat.cpp
+-rw----r--. 1 myatthitkoko unixStudent 202 Mar  5 22:25 input.cpp
+-rw----r--. 1 myatthitkoko unixStudent 363 Mar  5 22:25 main.cpp
+-rw----r--. 1 myatthitkoko unixStudent 115 Mar  5 22:43 output.cpp
+[myatthitkoko@voyager lab5]$ make clean
+[myatthitkoko@voyager lab5]$ make clean
+make: *** [cleanobject] Error 1
+[myatthitkoko@voyager lab5]$ make
+g++ -c main.cpp
+g++ -c input.cpp
+g++ -c concat.cpp
+g++ -c output.cpp
+g++ -o greet main.o input.o concat.o output.o 
+[myatthitkoko@voyager lab5]$ make
+make: `greet' is up to date.
+[myatthitkoko@voyager lab5]$ exit
+exit
+
+Script done on Thu 06 Mar 2025 11:00:07 AM PST
+Script started on Thu 06 Mar 2025 07:34:57 PM PST
+[?[myatthitkoko@voyager ~]$ mkdir mod6
+[myatthitkoko@voyager ~]$ cd mod6
+[myatthitkoko@voyager mod6]$ git init
+Initialized empty Git repository in /home/student/myatthitkoko/mod6/.git/
+[myatthitkoko@voyager mod6]$ git config user.name 'Myat Thit Ko Ko'
+[myatthitkoko@voyager mod6]$ git config user.email 'mtkk@gmail.com'
+[myatthitkoko@voyager mod6]$ git clone https://github.com/oneeightb/module6
+Cloning into 'module6'...
+remote: Enumerating objects: 25, done.
+remote: Total 25 (delta 0), reused 0 (delta 0), pack-reused 25 (from 1)
+Unpacking objects:   4% (1/25)   Unpacking objects:   8% (2/25)   Unpacking objects:  12% (3/25)   Unpacking objects:  16% (4/25)   Unpacking objects:  20% (5/25)   Unpacking objects:  24% (6/25)   Unpacking objects:  28% (7/25)   Unpacking objects:  32% (8/25)   Unpacking objects:  36% (9/25)   Unpacking objects:  40% (10/25)   Unpacking objects:  44% (11/25)   Unpacking objects:  48% (12/25)   Unpacking objects:  52% (13/25)   Unpacking objects:  56% (14/25)   Unpacking objects:  60% (15/25)   Unpacking objects:  64% (16/25)   Unpacking objects:  68% (17/25)   Unpacking objects:  72% (18/25)   Unpacking objects:  76% (19/25)   Unpacking objects:  80% (20/25)   Unpacking objects:  84% (21/25)   Unpacking objects:  88% (22/25)   Unpacking objects:  92% (23/25)   Unpacking objects:  96% (24/25)   Unpacking objects: 100% (25/25)   Unpacking objects: 100% (25/25), done.
+[myatthitkoko@voyager mod6]$ cd module6
+[myatthitkoko@voyager module6]$ git remote -v
+origin	https://github.com/oneeightb/module6 (fetch)
+origin	https://github.com/oneeightb/module6 (push)
+[myatthitkoko@voyager module6]$ ls
+file1  README.md
+[myatthitkoko@voyager module6]$ git checkout -b new_branch
+Switched to a new branch 'new_branch'
+[myatthitkoko@voyager module6]$ echo "file2 created on $date" > file2
+[myatthitkoko@voyager module6]$ git status
+# On branch new_branch
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	file2
+nothing added to commit but untracked files present (use "git add" to track)
+[myatthitkoko@voyager module6]$ git add file2
+[myatthitkoko@voyager module6]$ git commit -m "idk why"
+[new_branch afca3c3] idk why
+ Committer: Myat Thit Ko Ko" _ <myatthitkoko@voyager.deanza.edu>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file2
+[myatthitkoko@voyager module6]$ git status
+# On branch new_branch
+nothing to commit, working directory clean
+[myatthitkoko@voyager module6]$ ls
+file1  file2  README.md
+[myatthitkoko@voyager module6]$ git checkout master
+Switched to branch 'master'
+[myatthitkoko@voyager module6]$ ls
+file1  README.md
+[myatthitkoko@voyager module6]$ echo new_branch is still not the head yet. Even though it is committed, it has not merged with master.
+new_branch is still not the head yet. Even though it is committed, it has not merged with master.
+[myatthitkoko@voyager module6]$ git merge new_branch
+Updating 7ce3553..afca3c3
+Fast-forward
+ file2 | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file2
+[myatthitkoko@voyager module6]$ git status
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+#   (use "git push" to publish your local commits)
+#
+nothing to commit, working directory clean
+[myatthitkoko@voyager module6]$ cd ~/lab5
+[myatthitkoko@voyager lab5]$ make clean
+[myatthitkoko@voyager lab5]$ make
+g++ -c main.cpp
+g++ -c input.cpp
+g++ -c concat.cpp
+g++ -c output.cpp
+g++ -o greet main.o input.o concat.o output.o 
+[myatthitkoko@voyager lab5]$ mkdir bin
+[myatthitkoko@voyager lab5]$ mv greet bin/
+[myatthitkoko@voyager lab5]$ tree
+.
+├── bin
+│   └── greet
+├── clean
+├── concat.cpp
+├── concat.h
+├── concat.o
+├── error.txt
+├── input.cpp
+├── input.h
+├── input.o
+├── lab5.txt
+├── list
+├── main.cpp
+├── main.o
+├── makefile
+├── output.cpp
+├── output.h
+└── output.o
+
+1 directory, 17 files
+[myatthitkoko@voyager lab5]$ tar cf Cfiles.tar *.cpp *.h
+
+[myatthitkoko@voyager lab5]$ tar rf Cfiles.tar *.o bin
+[myatthitkoko@voyager lab5]$ ls -l Cfiles.tar
+-rw-r--r--. 1 myatthitkoko unixStudent 51200 Mar  6 20:01 Cfiles.tar
+[myatthitkoko@voyager lab5]$ gzip Cfiles.tar
+[myatthitkoko@voyager lab5]$ ls -l Cfiles.tar*
+-rw-r--r--. 1 myatthitkoko unixStudent 7919 Mar  6 20:01 [38;5;9mCfiles.tar.gz
+[myatthitkoko@voyager lab5]$ mkdir lab5copy
+[myatthitkoko@voyager lab5]$ cp Cfiles.tar.gz lab5/lab5copy/
+[myatthitkoko@voyager lab5]$ cd lab5copy
+[myatthitkoko@voyager lab5copy]$ tar xzf Cfiles.tar.gz
+[myatthitkoko@voyager lab5copy]$ tree
+.
+├── bin
+│   └── greet
+├── Cfiles.tar.gz
+├── concat.cpp
+├── concat.h
+├── concat.o
+├── input.cpp
+├── input.h
+├── input.o
+├── main.cpp
+├── main.o
+├── output.cpp
+├── output.h
+└── output.o
+
+1 directory, 13 files
+[myatthitkoko@voyager lab5copy]$ exit
+exit
+
+Script done on Thu 06 Mar 2025 08:08:12 PM PST

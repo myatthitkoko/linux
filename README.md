@@ -4,8 +4,6 @@ This repository is a collection of my bash files and labs from previous college 
 
 sysCheck.sh file is the most recent creation that tracks CPU, memory, and disk usage.
 
-<details>
-<summary>Expand to see an example</summary>
 Script started on 2026-05-10 08:59:49+00:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="219" LINES="50"]
 [?2004h[0;32m@myatthitkoko [0m➜ [1;34m/workspaces/linux [0;36m([1;31mmain[0;36m) [0m$ bash sysCheck.sh
 [?2004l
@@ -28,4 +26,3 @@ Generated at: Sun May 10 09:00:02 UTC 2026
 exit
 
 Script done on 2026-05-10 09:00:05+00:00 [COMMAND_EXIT_CODE="0"]
-</details>

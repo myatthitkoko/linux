@@ -1,8 +1,9 @@
 #!/bin/bash
 #logged every 5 minutes | edit at crontab -e
+LOG_DIR="$PWD/systemLogs"
+mkdir -p "$LOG_DIR"
 
-OUT="/workspaces/linux/systemLogs/systemReport_$(TZ="America/Los_Angeles" date +"%F_%H-%M-%S").log"
-mkdir -p systemLogs
+OUT="$LOG_DIR/systemReport_$(TZ="America/Los_Angeles" date +"%F_%H-%M-%S").log"
 
 {
 

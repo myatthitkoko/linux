@@ -4,7 +4,7 @@ This repository is a collection of my bash files and labs from previous college 
 
 sysCheck.sh file is the most recent creation that tracks CPU, memory, and disk usage. 
 
-It automatically generates log files in systemLog directory
+It automatically generates log files in systemLogs directory
 
 -every 5 minutes while the Codespace remains active.
 

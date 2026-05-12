@@ -38,7 +38,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Commit logs
         run: |
-          git config user.name "myatthitkoko"
+          git config user.name "system-logger"
           git config user.email "github@myatthitkoko.com"
 
           git add systemLogs/

@@ -34,7 +34,7 @@ echo "Memory Available: ${MEM_AVAILABLE}%"
 
 echo
 
-curl -s --head https://8.8.8.8 >/dev/null && echo "Internet: CONNECTED" || echo "Internet: DISCONNECTED"
+curl -s --head https://myatthitkoko.com >/dev/null && echo "Internet: CONNECTED" || echo "Internet: DISCONNECTED"
 
 echo "Generated at: $(TZ="America/Los_Angeles" date)" 
 

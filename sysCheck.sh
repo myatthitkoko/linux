@@ -2,7 +2,7 @@
 #logged every 5 minutes | edit at crontab -e
 
 OUT="/workspaces/linux/systemLogs/systemReport_$(TZ="America/Los_Angeles" date +"%F_%H-%M-%S").log"
-mkdir -p /workspaces/linux/systemLogs
+mkdir -p systemLogs
 
 {
 

@@ -1,0 +1,15 @@
+==============================================
+              SYSTEM REPORT
+==============================================
+CPU Usage: User: 1.2 % System: 0.4 % Idle: 78.5%
+
+Memory Usage:
+               total        used        free      shared  buff/cache   available
+Mem:            15Gi       949Mi        12Gi        40Mi       2.4Gi        14Gi
+
+Disk Usage: 41%
+Disk usage is ok
+Memory Available: 94%
+
+Internet: CONNECTED
+Generated at: Mon Aug 24 04:53:54 PDT 2026
